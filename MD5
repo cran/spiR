@@ -1,0 +1,15 @@
+9fd50492c82d6dd33c12c55af5b35254 *DESCRIPTION
+9a77b1ba55915ff52f705da511e30331 *LICENSE
+9e15641add865934f9a7dc369755bfac *NAMESPACE
+55d4ed3a0739befa917837f140374ea4 *R/spiR.R
+3d542834087b71061c728e96d08b9708 *README.md
+965fed426d35e64fb2e24c7e50d921db *build/vignette.rds
+30c8d19f4e6f97a3b56bf57ee28df762 *inst/doc/spiR.R
+60fdcd93903ef223438753953a404b35 *inst/doc/spiR.Rmd
+8ba178466b9a8e9c06b3198c87af5c23 *inst/doc/spiR.html
+3e67ec97ce51f8183110b34cd89e4f7f *man/figures/LOGO.png
+86787ffd76872e3883484c80290ae319 *man/figures/README-pressure-1.png
+0afdc8b5bc6ca1fd889e59b933cd0bca *man/sqs_spi_country.Rd
+76bd04a0d212cab4a7a43a98b25db273 *man/sqs_spi_data.Rd
+af2fb8cd4df3fae33bd6ca4d202a3cf9 *man/sqs_spi_indicator.Rd
+60fdcd93903ef223438753953a404b35 *vignettes/spiR.Rmd
