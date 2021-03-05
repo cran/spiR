@@ -1,5 +1,5 @@
 ---
-title: "spiRData"
+title: "spiR"
 author: "Thierry Warin"
 output: rmarkdown::html_vignette
 vignette: >
@@ -28,7 +28,10 @@ At the Social Progress Imperative, they define "social progress as the capacity 
 The index measures the quality of life for 98% of the world's population. In its current version, the R client provides access to global data. In further versions, this R client will include different geographical levels: states, regions, cities and sometimes communities.
 
 Three overarching dimensions are (1) Basic Human Needs, (2) Foundations of Wellbeing, and (3) Opportunity. Within each dimension, there are four components that further divide the indicators into thematic categories. The index consists in 51 social and environmental variables, covering the years 2014 to 2019. 
-To see a definition of the indicators, please visit this [page](https://www.socialprogress.org/index/global/definitions/BHN/0/0). See below to have access through spiR to the whole list of indicators.
+
+To read the methodology summary of the Social Progress Index [[here]](https://legacy.socialprogress.org/assets/downloads/resources/2020/2020-Social-Progress-Index-Methodology.pdf){target="_blank"}
+
+To see a definition of the indicators, please visit this [page](https://www.socialprogress.org/index/global/definitions/#BHN/0/0/). See below to have access through spiR to the whole list of indicators.
 
 Users can recreate in R impactful dashboards and visualizations as the ones found on <www.socialprogress.org>:
 
@@ -39,7 +42,7 @@ Users can recreate in R impactful dashboards and visualizations as the ones foun
 First, install spiR:
 
 ```{r, eval=FALSE}
-devtools::install_github("warint/spiR")
+install.packages("spiR")
 ```
 
 
@@ -56,11 +59,11 @@ library(spiR)
 A user needs to enter the ISO code of a country. To have access to this code, the following function provides this information.
 
 ```{r, eval = FALSE}
-sqs_spi_country() # A list of all countries will be produced
+spir_country() # A list of all countries will be produced
 
-sqs_spi_country(country = "Canada") # The ISO code for Canada will be produced
+spir_country(country = "Canada") # The ISO code for Canada will be produced
 
-sqs_spi_country("Canada") # The ISO code for Canada will be produced
+spir_country("Canada") # The ISO code for Canada will be produced
 ```
 
 ### Step 2: Getting the indicator's code
@@ -68,11 +71,11 @@ sqs_spi_country("Canada") # The ISO code for Canada will be produced
 A user needs to enter the code of the desired indicator. To do so, the following function provides access to all the indicators of interest.
 
 ```{r, eval = FALSE}
-sqs_spi_indicator() # A list of all countries will be produced
+spir_indicator() # A list of all countries will be produced
 
-sqs_spi_indicator(indicators = "mortality") # A list with all the variables including "mortlity" will be produced
+spir_indicator(indicators = "mortality") # A list with all the variables including "mortlity" will be produced
 
-sqs_spi_indicator("mortality") # A list with all the variables including "mortlity" will be produced
+spir_indicator("mortality") # A list with all the variables including "mortlity" will be produced
 ```
 
 ### Step 3: Getting the data
@@ -80,21 +83,40 @@ sqs_spi_indicator("mortality") # A list with all the variables including "mortli
 Once the user knows the ISO code and the indicator's code, s.he can collect the data in a very easy way through this function:
 
 ```{r, eval=FALSE}
-sqs_spi_data(country = c("USA", "FRA"), year = c("2018", "2019"), indicators = "SPI") # It generates a data frame of the overall SPI indicator for the USA and France for the years 2018 and 2019
+spir_data(country = c("USA", "FRA"), year = c("2018", "2019"), indicators = "SPI") # It generates a data frame of the overall SPI indicator for the USA and France for the years 2018 and 2019
 
-sqs_spi_data(country = c("USA", "FRA"), years = "2018", ) # It generates a data frame of all the indicators for the USA and France for the year 2018
+spir_data(country = c("USA", "FRA"), years = "2018", ) # It generates a data frame of all the indicators for the USA and France for the year 2018
 
-sqs_spi_data("USA", "2019", c("SPI", "FOW")) # It generates a data frame of the SPI and FOW indicators for the USA in 2019
+spir_data("USA", "2019", c("SPI", "FOW")) # It generates a data frame of the SPI and FOW indicators for the USA in 2019
 
-sqs_spi_data(, "2018", ) # It generates a data frame for all the countries and all the indicators for 2018
+spir_data(, "2018", ) # It generates a data frame for all the countries and all the indicators for 2018
 
-sqs_spi_data("USA", "2017", ) # It generates a data frame of all the indicators for the USA in 2017
+spir_data("USA", "2017", ) # It generates a data frame of all the indicators for the USA in 2017
 
-sqs_spi_data("USA", , ) # It generates a data frame of all the indicators for all the years for the USA
+spir_data("USA", , ) # It generates a data frame of all the indicators for all the years for the USA
 
-sqs_spi_data(, , ) # It generates a data frame of the complete dataset
+spir_data(, , ) # It generates a data frame of the complete dataset
 
-sqs_spi_data() # It generates a data frame of the complete dataset
+spir_data() # It generates a data frame of the complete dataset
+```
+
+### Optional Step : Create Visuals
+
+spir_visual fonction allows to create two types of visuals from the SPI data : barchart and linechart.
+
+
+The first is a barchart of the top 9 countries for the chosen indicator and year.
+
+
+```{r,echo=FALSE}
+library(spiR)
+spir_visual(chart = "bar_1", indicator = "SPI", years = "2020")
+```
+
+The second is a linechart showing the evolution of the most represented countries over time for the chosen indicator.
+
+```{r,echo=FALSE}
+spir_visual(chart = "line_1", indicator = "SPI", years = "2020")
 ```
 
 
